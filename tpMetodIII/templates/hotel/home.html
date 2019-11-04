@@ -1,4 +1,5 @@
 <!doctype html>
+{% load static from staticfiles %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -19,5 +20,19 @@
         {% endfor %}
     </ul>
 
+    <h2>Ownerships</h2>
+    {% if ownerships %}
+    <ul>
+        {% for ownership in ownerships %}
+        <li>
+            <p>{{ ownership.title }}</p>
+            <p>{{ ownership.rate }}</p>
+            <img src="{{ownership.cover}}" alt="{{ownership.title}}" />
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <h3>No hay propiedades</h3>
+    {% endif %}
 </body>
 </html>

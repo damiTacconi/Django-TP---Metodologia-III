@@ -16,7 +16,9 @@ class Ownership(models.Model):
     amount_pax = models.IntegerField(default=1)
     title = models.CharField(max_length=60, default='Undefined Title')
     city = models.ForeignKey(City, on_delete=models.CASCADE)
+    cover = models.ImageField(blank=False, null=False, upload_to='static/images/', default='')
     rate = models.FloatField(default=0)
+    host = models.ForeignKey(Host,on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return "\nCity: \t %s" % self.city
