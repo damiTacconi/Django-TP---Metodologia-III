@@ -9,7 +9,7 @@ def index(request):
     ownerships = Ownership.objects.all() # me traigo todas las propiedades y no importa si no hay ninguna
     context = {
         'cities': cities,
-        'ownerships': ownerships,
+        'ownerships': ownerships
     }
 
     return render(request, 'hotel/home.html', context)
