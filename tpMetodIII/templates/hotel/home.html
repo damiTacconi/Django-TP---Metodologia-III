@@ -27,6 +27,7 @@
         <li>
             <p>{{ ownership.title }}</p>
             <p>{{ ownership.rate }}</p>
+            <p>Host Email: {{ ownership.host.email }}</p>
             <img src="{{ownership.cover}}" alt="{{ownership.title}}" />
         </li>
         {% endfor %}
