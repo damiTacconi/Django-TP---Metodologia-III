@@ -15,11 +15,10 @@
 <body>
 
     <main class="main">
-
         {% if ownerships %}
         <div class="ownerships">
             {% for ownership in ownerships %}
-            <div class="ownership-card">
+            <a class="ownership-card" href="/ownerships/{{ownership.id}}">
                 <img class="ownership-image" src="{{ownership.cover}}" alt="{{ownership.title}}">
                 <div class="ownership-body">
                     <div class="ownership-details">
@@ -28,7 +27,7 @@
                     <p class="ownership-title">{{ ownership.title }}</p>
                     <span class="ownership-rate">${{ ownership.rate }} por noche</span>
                 </div>
-            </div>
+            </a>
             {% endfor %}
         </div>
         {% else %}
