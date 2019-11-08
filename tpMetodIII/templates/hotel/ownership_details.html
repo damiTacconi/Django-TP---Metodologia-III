@@ -14,7 +14,10 @@
 </head>
 
 <body>
-
+    {% if message is not None %}
+    <h1 class="alert message-{{message.type}}">{{message.text}} <button onclick="closeAlert(this)"
+            class="close-alert">X</button></h1>
+    {% endif %}
     <main>
 
         <h1 style="text-align: center;">{{ ownership.title }}</h1>
@@ -36,6 +39,7 @@
                         <input type="text" name="name" placeholder="First Name" required>
                         <input type="text" name="lastname" placeholder="Last Name" required>
                         <input type="email" name="email" placeholder="Email" required>
+                        <input type="number" name="ownership_id" value="{{ownership.id}}" hidden required>
                         <div class="book-dates">
                             {% if rental_dates %}
                             <p>Dias disponibles:</p>
@@ -59,6 +63,9 @@
     </main>
 
 
+    <script>
+        const closeAlert = (e) => e.parentElement.remove()
+    </script>
 </body>
 
 </html>

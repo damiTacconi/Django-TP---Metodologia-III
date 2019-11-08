@@ -1,5 +1,23 @@
 
+.alert{
+    border-radius: 5px;
+    padding:1rem;
+    color:#FFF;
+}
+.close-alert{
+    float: right;
+    border: none;
+    background: transparent;
+    color: #FFF;
+    cursor: pointer;
+}
+.message-danger{
+    background: rgb(216, 51, 39)
+}
 
+.message-success{
+    background: rgb(43, 189, 68)
+}
 .ownership-details-body{
     display: grid;
     padding:2rem;

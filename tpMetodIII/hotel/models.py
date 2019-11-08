@@ -41,7 +41,7 @@ class Book(models.Model):
 
 class RentalDate(models.Model):
     date = models.DateTimeField()
-    ownership = models.ForeignKey(Ownership, on_delete=models.CASCADE,default=None)
+    ownership = models.ForeignKey(Ownership, on_delete=models.CASCADE,default=None, null=True)
     booked = models.ForeignKey(Book, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
