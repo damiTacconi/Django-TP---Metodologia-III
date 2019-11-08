@@ -1,16 +1,20 @@
 from django.db import models
 from django.contrib.auth.models import User
+
 # Create your models here.
+
 
 class Host(User):
     class Meta:
         verbose_name_plural='Hosts'
+
 
 class City(models.Model):
     name = models.CharField(max_length=100)
 
     def __str__(self):
         return "Name: %s" % self.name
+
 
 class Ownership(models.Model):
     amount_pax = models.IntegerField(default=1)
@@ -23,6 +27,8 @@ class Ownership(models.Model):
 
     def __str__(self):
         return "\nCity: \t %s" % self.city
+
+
 class Book(models.Model):
     book_number = models.IntegerField(blank=False,default=0)
     date = models.DateTimeField(blank=True, default=None)
