@@ -3,7 +3,15 @@ from django.contrib import admin
 from .models import *
 import os
 
+
+class RentalDateInline(admin.TabularInline):
+    model = RentalDate
+    fk_name = 'ownership'
+    max_num = 7
+
+
 class OwnershipAdmin(admin.ModelAdmin):
+    inlines = [RentalDateInline]
     exclude = ('host',)
 
     def save_model(self, request, obj, form, change):
@@ -16,6 +24,7 @@ class OwnershipAdmin(admin.ModelAdmin):
             if os.path.isfile(str(obj.cover)):
                 os.remove(str(obj.cover))
             obj.delete()
+
 
 class HostAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'username', 'password')

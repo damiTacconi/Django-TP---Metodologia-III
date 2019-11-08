@@ -9,5 +9,16 @@
 </head>
 <body>
     <h1>{{ ownership.title }}</h1>
+
+
+    {% if rental_dates %}
+        <ul>
+            {% for date in rental_dates %}
+                <li>
+                    <input type="checkbox" name="date" value="{{ date.id }}"> {{ date.date }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 </body>
 </html>

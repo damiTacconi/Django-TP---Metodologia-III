@@ -19,6 +19,7 @@ class Ownership(models.Model):
     cover = models.ImageField(blank=False, null=False, upload_to='static/images/', default='')
     rate = models.FloatField(default=0)
     host = models.ForeignKey(Host,on_delete=models.CASCADE, null=True)
+    description = models.CharField(max_length=1000, default="", null=True)
 
     def __str__(self):
         return "\nCity: \t %s" % self.city
@@ -31,10 +32,11 @@ class Book(models.Model):
     def __str__(self):
         return "\nBookNumber: %s" % self.book_number
 
+
 class RentalDate(models.Model):
     date = models.DateTimeField()
     ownership = models.ForeignKey(Ownership, on_delete=models.CASCADE,default=None)
-    booked = models.ForeignKey(Book, on_delete=models.CASCADE, null=True)
+    booked = models.ForeignKey(Book, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return "\nDate:  %s , \nBooked: \t %s \nOwnership: \t %s" % (self.date, self.booked, self.ownership)
