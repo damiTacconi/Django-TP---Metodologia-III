@@ -34,7 +34,7 @@
                     <div class="book-rate">${{ ownership.rate }}</div>
                     <div class="book-inline-text">por noche</div>
                     {% if rental_dates %}
-                    <form class="book-form" action="/hotel/book" method="POST" autocomplete="off">
+                    <form name="bookForm" class="book-form" action="/hotel/book" method="POST" autocomplete="off">
                         {% csrf_token %}
                         <input type="text" name="name" placeholder="First Name" required>
                         <input type="text" name="lastname" placeholder="Last Name" required>

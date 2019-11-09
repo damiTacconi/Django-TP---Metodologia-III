@@ -41,7 +41,7 @@ def book(request): # todavia hay que completar el metodo
 
         for date in dates:
             rental_date = RentalDate.objects.get(pk=date)
-            if not rental_date.ownership:
+            if rental_date.ownership:  # aca deberiamos arreglarlo
                 return ownership_details(request,str(ownership_id), {
                         'type':'danger',
                         'text': 'No se pudo reservar'
