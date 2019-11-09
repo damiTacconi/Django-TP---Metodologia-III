@@ -4,7 +4,7 @@
 
 `python manage.py runserver`
 
-## Ejectuar Migraciones
+## Ejecutar Migraciones
 
 1) `python manage.py makemigrations`
 2) `python manage.py migrate`
