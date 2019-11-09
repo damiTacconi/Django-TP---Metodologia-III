@@ -1,7 +1,7 @@
 <!doctype html>
 {% load static from staticfiles %}
 
-<html lang="en" xmlns:rental_dates>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -18,8 +18,7 @@
     <h1 class="alert message-{{message.type}}">{{message.text}} <button onclick="closeAlert(this)"
             class="close-alert">X</button></h1>
     {% endif %}
-    <main>
-
+    <main class="main">
         <h1 style="text-align: center;">{{ ownership.title }}</h1>
         <div class="ownership-details-body">
             <div class="ownership-details-image">
@@ -34,14 +33,15 @@
                 <div class="book-rate-info">
                     <div class="book-rate">${{ ownership.rate }}</div>
                     <div class="book-inline-text">por noche</div>
-                    <form class="book-form" action="/hotel/book" method="POST">
+                    {% if rental_dates %}
+                    <form class="book-form" action="/hotel/book" method="POST" autocomplete="off">
                         {% csrf_token %}
                         <input type="text" name="name" placeholder="First Name" required>
                         <input type="text" name="lastname" placeholder="Last Name" required>
                         <input type="email" name="email" placeholder="Email" required>
                         <input type="number" name="ownership_id" value="{{ownership.id}}" hidden required>
                         <div class="book-dates">
-                            {% if rental_dates %}
+
                             <p>Dias disponibles:</p>
                             {% for date in rental_dates %}
                             <div class="input-date">
@@ -49,16 +49,22 @@
 
                             </div>
                             {% endfor %}
-                            {% endif %}
+
                         </div>
-                        <button class="btn-book" type="submit"
+                        <button class="btn-book btn-accent btn-block" type="submit"
                             {{ rental_dates|yesno:',disabled=disabled' }}>Reservar</button>
 
                     </form>
+                    {% else %}
+                    <h2 style="position:relative;top:30px" class="alert message-warning">No hay dias disponibles...</h2>
+                    {% endif %}
 
                 </div>
             </div>
+
         </div>
+        <a href="/" class="btn-back btn-default">Ir a la Home</a>
+
 
     </main>
 

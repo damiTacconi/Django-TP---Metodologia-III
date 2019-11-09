@@ -29,24 +29,27 @@ def ownership_details(request, ownership_id, message=None):
 def book(request): # todavia hay que completar el metodo
     if request.method == "POST":
         query_dict = request.POST
+
         dates = query_dict.getlist('date[]')
+
         ownership_id = query_dict.get('ownership_id')
         ownership = Ownership.objects.get(pk=ownership_id)
+
         client_name = query_dict.get('name')
         client_lastname = query_dict.get('lastname')
         client_email = query_dict.get('email')
 
         for date in dates:
             rental_date = RentalDate.objects.get(pk=date)
-            if rental_date.ownership:
+            if not rental_date.ownership:
                 return ownership_details(request,str(ownership_id), {
                         'type':'danger',
                         'text': 'No se pudo reservar'
                 })
 
             # falta completar campo book_number , deberia ser aleatorio
-            book = Book(date=date,client_name=client_name,client_lastname=client_lastname,client_email=client_email)
-            rental_date.ownership = ownership
+            # book = Book(date=date,client_name=client_name,client_lastname=client_lastname,client_email=client_email)
+            # rental_date.ownership = ownership
             # rental_date.date =
 
 

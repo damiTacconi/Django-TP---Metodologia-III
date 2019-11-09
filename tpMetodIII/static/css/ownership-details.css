@@ -1,4 +1,10 @@
 
+.main{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: min-content min-content min-content;
+}
+
 .alert{
     border-radius: 5px;
     padding:1rem;
@@ -15,12 +21,16 @@
     background: rgb(216, 51, 39)
 }
 
+.message-warning{
+    background: rgb(212, 114, 48);
+}
+
 .message-success{
     background: rgb(43, 189, 68)
 }
 .ownership-details-body{
     display: grid;
-    padding:2rem;
+    padding:1.5rem;
     background: #eee;
     grid-template-columns: 30rem 2fr 2fr;
     row-gap: 10px;
@@ -68,10 +78,32 @@
     bottom: 0;
     left:0;
     border: none;
-    width:100%;
     padding:1rem;
+    cursor:pointer;
+    text-transform:uppercase;
+}
+
+.btn-block{
+    width:100%;
+}
+
+.btn-back{
+    position: relative;
+    border: none;
+    padding:1rem;
+    text-decoration: none;
+    text-align: center;
+    bottom:0;
+    top:0;
+}
+.btn-accent{
     color: #FFF;
     background: crimson;
+}
+
+.btn-default{
+    color: #FFF;
+    background: #303030;
 }
 
 .book-form{
@@ -84,6 +116,7 @@
 }
 
 .btn-book:disabled{
+    cursor: default;
     background: #232323;
 }
 

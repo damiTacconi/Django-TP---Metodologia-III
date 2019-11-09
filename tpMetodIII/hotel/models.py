@@ -33,6 +33,7 @@ class Book(models.Model):
     book_number = models.IntegerField(blank=False,default=0)
     date = models.DateTimeField(blank=True, default=None)
     client_name = models.CharField(blank=False , max_length=30, default=None)
+    client_lastname = models.CharField(blank=False, max_length=30, default=None)
     client_email = models.CharField(blank=False, max_length=60, default=None)
 
     def __str__(self):
