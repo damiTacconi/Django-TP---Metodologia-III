@@ -8,9 +8,16 @@ import datetime
 
 
 def index(request):
-    ownerships = Ownership.objects.all()  # me traigo todas las propiedades y no importa si no hay ninguna
+    city_selected = request.GET.get('city_select') or None
+    cities = City.objects.all()
+
+    if city_selected is not None:
+        ownerships = Ownership.objects.filter(city__id=city_selected)
+    else:
+        ownerships = Ownership.objects.all()  # me traigo todas las propiedades y no importa si no hay ninguna
     context = {
-        'ownerships': ownerships
+        'ownerships': ownerships,
+        'cities': cities,
     }
 
     return render(request, 'hotel/home.html', context)

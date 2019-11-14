@@ -1,5 +1,26 @@
 body{
     font-family: sans-serif;
+
+}
+
+.select{
+    padding:.3rem;
+}
+
+.btn-search{
+    border:none;
+    background: #5994C6;
+    color: #FFF;
+}
+
+.btn-search:hover{
+    background: #2F71A9
+}
+.grid-form-filters{
+    padding:10px;
+    display:grid;
+    column-gap:5px;
+    grid-template-columns: max-content 100px
 }
 
 .ownerships{
@@ -52,4 +73,9 @@ body{
     font-family: 'Courier New', Courier, monospace;
     font-size: .97rem;
     color: rgb(160, 111, 47);
+}
+
+.city-name{
+    margin:0;
+    padding-bottom:3px
 }

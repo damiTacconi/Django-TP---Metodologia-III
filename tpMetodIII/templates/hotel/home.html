@@ -13,8 +13,16 @@
 </head>
 
 <body>
-
     <main class="main">
+        <form action="" method="get" class="grid-form-filters">
+            <select class="select" name="city_select" id="id-select-city">
+                <option value="">Todas</option>
+                {% for city in cities %}
+                <option  value="{{ city.id }}">{{city.name}}</option>
+                {% endfor %}
+            </select>
+            <button class="btn-search" type="submit">BUSCAR</button>
+        </form>
         {% if ownerships %}
         <div class="ownerships">
             {% for ownership in ownerships %}
@@ -25,6 +33,7 @@
                         <span class="ownership-amount-pax">Max. Pax: {{ ownership.amount_pax }}</span>
                     </div>
                     <p class="ownership-title">{{ ownership.title }}</p>
+                    <p class="city-name"><small>{{ ownership.city.name }}</small></p>
                     <span class="ownership-rate">${{ ownership.rate }} por noche</span>
                 </div>
             </a>
