@@ -1,5 +1,9 @@
 # Django-TP---Metodologia-III
 
+## Integrantes
+- Tacconi, Damian
+- Lugo, Christian
+
 ## Cuentas
 | Username | Password  |  Role     |
 | -------  | --------  | --------- |
