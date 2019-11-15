@@ -15,7 +15,7 @@ class City(models.Model):
     name = models.CharField(max_length=100)
 
     def __str__(self):
-        return "Name: %s" % self.name
+        return str(self.name)
 
 
 class Ownership(models.Model):
@@ -39,7 +39,7 @@ class Book(models.Model):
     client_email = models.CharField(blank=False, max_length=60, default=None)
 
     def __str__(self):
-        return super().__str__()
+        return str(self.book_number)
 
 
 class RentalDate(models.Model):

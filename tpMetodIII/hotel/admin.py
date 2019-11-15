@@ -5,9 +5,13 @@ import os
 
 
 class BookAdmin(admin.ModelAdmin):
+    list_display = ('book_number', 'client_name', 'client_lastname', 'client_email', 'date', )
+
     def get_queryset(self, request):
         if not request.user.is_superuser:
-            pass
+            return super(BookAdmin, self).get_queryset(request)\
+                .filter(rentaldate__ownership__host__id=request.user.id)\
+                .distinct()
         return super(BookAdmin, self).get_queryset(request)
 
     def delete_queryset(self, request, queryset):
@@ -36,8 +40,7 @@ class OwnershipAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         if not request.user.is_superuser:
-            qs = super(OwnershipAdmin, self).get_queryset(request)
-            return qs.filter(host=request.user)
+            return super(OwnershipAdmin, self).get_queryset(request).filter(host=request.user)
         return super(OwnershipAdmin, self).get_queryset(request)
 
     def delete_queryset(self, request, queryset):

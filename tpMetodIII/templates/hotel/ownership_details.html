@@ -25,6 +25,7 @@
                 <img src="/{{ownership.cover}}" alt="{{ownership.title}}">
             </div>
             <div class="ownership-details-description">
+                <h3 style="text-decoration:underline">Descripcion</h3>
                 <p>
                     {{ownership.description}}
                 </p>
@@ -51,6 +52,10 @@
                             {% endfor %}
 
                         </div>
+
+                        <!--
+                              PyCharm marca error en la sintaxis de abajo pero esta bien escrito.
+                         -->
                         <button class="btn-book btn-accent btn-block" type="submit"
                             {{ rental_dates|yesno:',disabled=disabled' }}>Reservar</button>
 

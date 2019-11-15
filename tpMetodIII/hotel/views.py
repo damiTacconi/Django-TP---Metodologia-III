@@ -54,13 +54,11 @@ def book(request):  # todavia hay que completar el metodo
         booked.save()
         for date in dates:
             rental_date = RentalDate.objects.get(pk=date)
-            if rental_date.booked:  # aca deberiamos arreglarlo
+            if rental_date.booked:
                 return ownership_details(request, str(ownership_id), {
                         'type': 'danger',
                         'text': 'No se pudo reservar: Hay una fecha %s esta reservada.' % rental_date.booked.date
                 })
-
-            # falta completar campo book_number , deberia ser aleatorio
 
             rental_date.booked = booked
             rental_date.save()
