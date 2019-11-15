@@ -43,7 +43,8 @@ def book(request):  # todavia hay que completar el metodo
         dates = query_dict.getlist('date[]')
 
         ownership_id = query_dict.get('ownership_id')
-
+        ownership = get_object_or_404(Ownership, pk=ownership_id)
+        total = 0
         client_name = query_dict.get('name')
         client_lastname = query_dict.get('lastname')
         client_email = query_dict.get('email')
@@ -52,6 +53,7 @@ def book(request):  # todavia hay que completar el metodo
         booked = Book(date=datetime.datetime.now(), client_name=client_name, client_lastname=client_lastname,
                       client_email=client_email, book_number=book_number)
         booked.save()
+
         for date in dates:
             rental_date = RentalDate.objects.get(pk=date)
             if rental_date.booked:
@@ -62,7 +64,10 @@ def book(request):  # todavia hay que completar el metodo
 
             rental_date.booked = booked
             rental_date.save()
+            total += ownership.rate
 
+        booked.total = total
+        booked.save()
         return ownership_details(request, str(ownership_id), {
                 'type': 'success',
                 'text': 'Reservado con exito !'

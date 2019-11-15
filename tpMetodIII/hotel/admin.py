@@ -5,7 +5,18 @@ import os
 
 
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('book_number', 'client_name', 'client_lastname', 'client_email', 'date', )
+    list_display = ('book_number', 'client_name', 'client_lastname', 'client_email', 'get_ownership_rate',
+                    'get_count_rentaldate', 'total', 'date', )
+
+    def get_count_rentaldate(self, obj):
+        return obj.rentaldate_set.count()
+    get_count_rentaldate.short_description = 'Rental Date Quantity'
+    get_count_rentaldate.admin_order_field = 'rentaldate__id'
+
+    def get_ownership_rate(self, obj):
+        return obj.rentaldate_set.all()[0].ownership.rate
+    get_ownership_rate.short_description = 'Ownership Rate'
+    get_ownership_rate.admin_order_field = 'rentaldate__ownership__rate'
 
     def get_queryset(self, request):
         if not request.user.is_superuser:
@@ -16,9 +27,10 @@ class BookAdmin(admin.ModelAdmin):
 
     def delete_queryset(self, request, queryset):
         for book in queryset:
-            rental_date = RentalDate.objects.get(booked=book)
-            rental_date.booked = None
-            rental_date.save()
+            rental_dates = RentalDate.objects.filter(booked=book)
+            for rental_date in rental_dates:
+                rental_date.booked = None
+                rental_date.save()
             book.delete()
 
 

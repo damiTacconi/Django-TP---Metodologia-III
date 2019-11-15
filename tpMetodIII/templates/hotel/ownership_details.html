@@ -32,7 +32,7 @@
             </div>
             <div class="ownership-details-book">
                 <div class="book-rate-info">
-                    <div class="book-rate">${{ ownership.rate }}</div>
+                    <div class="book-rate">$ <span id="rate">{{ ownership.rate }}</span></div>
                     <div class="book-inline-text">por noche</div>
                     {% if rental_dates %}
                     <form name="bookForm" class="book-form" action="/hotel/book" method="POST" autocomplete="off">
@@ -42,22 +42,19 @@
                         <input type="email" name="email" placeholder="Email" required>
                         <input type="number" name="ownership_id" value="{{ownership.id}}" hidden required>
                         <div class="book-dates">
-
-                            <p>Dias disponibles:</p>
+                            <p>Dias disponibles - Total: $<span id="total">0</span> </p>
                             {% for date in rental_dates %}
                             <div class="input-date">
-                                <input type="checkbox" name="date[]" value="{{ date.id }}"> {{ date.date }}
-
+                                <input type="checkbox" onchange='handleChange(this);' name="date[]"
+                                    value="{{ date.id }}"> {{ date.date }}
                             </div>
                             {% endfor %}
-
                         </div>
-
                         <!--
                               PyCharm marca error en la sintaxis de abajo pero esta bien escrito.
                          -->
-                        <button class="btn-book btn-accent btn-block" type="submit"
-                            {{ rental_dates|yesno:',disabled=disabled' }}>Reservar</button>
+                        <button id="btn-book" class="btn-book btn-accent btn-block" type="submit"
+                            disabled="disabled">Reservar</button>
 
                     </form>
                     {% else %}
@@ -69,14 +66,9 @@
 
         </div>
         <a href="/" class="btn-back btn-default">Ir a la Home</a>
-
-
     </main>
 
-
-    <script>
-        const closeAlert = (e) => e.parentElement.remove()
-    </script>
+    <script src="{%  static 'js/script.js' %}" ></script>
 </body>
 
 </html>

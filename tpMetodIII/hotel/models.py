@@ -32,6 +32,7 @@ class Ownership(models.Model):
 
 
 class Book(models.Model):
+    total = models.FloatField(blank=True, default=0)
     book_number = models.IntegerField(blank=False,default=0)
     date = models.DateTimeField(blank=True, default=None)
     client_name = models.CharField(blank=False, max_length=30, default=None)
